@@ -32,6 +32,7 @@ docker-compose exec 123milhas ./vendor/bin/phpunit
 
 ## Rotas disponíveis:
 `/api/v1/flights` - Retorna todos os dados, dos Voo e seus Agrupamentos.
+
 `api/v1/groups` - Retorna apenas os dados dos agrupamentos dos voos.
 
 
