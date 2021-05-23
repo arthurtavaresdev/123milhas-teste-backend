@@ -1,0 +1,62 @@
+version: '3'
+services:
+  123milhas:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: 123milhas:1.0
+    container_name: 123milhas
+    ports:
+      - ${APP_PORT:-80}:80
+      - ${XDEBUG_PORT:-9003}:9003
+    environment:
+      COMPOSER_MEMORY_LIMIT: -1
+      PHP_EXTENSION_XDEBUG: 1
+    volumes:
+      - .:/var/www/html
+      - ./docker/php/www.conf:/usr/local/etc/php-fpm.d/www.conf
+      - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      - 123milhas
+    depends_on:
+      - mysql
+      - redis
+  mysql:
+    image: mysql:8.0
+    container_name: 123milhas_mysql
+    ports:
+      - ${FORWARD_DB_PORT:-3306}:3306
+    environment:
+      MYSQL_DATABASE: 123milhas
+      MYSQL_USER: alpesone
+      MYSQL_PASSWORD: alpesone
+      MYSQL_ROOT_PASSWORD: alpesone
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - 123milhas
+  redis:
+    image: redis:6.0
+    container_name: 123milhas_redis
+    ports:
+      - ${FORWARD_REDIS_PORT:-6379}:6379
+    volumes:
+      - redis-data:/data
+    networks:
+      - 123milhas
+  mailhog:
+    image: mailhog/mailhog:latest
+    container_name: 123milhas_mailhog
+    ports:
+      - 1025:1025
+      - 8025:8025
+    networks:
+      - 123milhas
+networks:
+  123milhas:
+    driver: bridge
+volumes:
+  mysql-data:
+    driver: local
+  redis-data:
+    driver: local
