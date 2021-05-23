@@ -8,7 +8,7 @@
 
 
 ## URL Online
-[Online em: https://123milhas.arthurtavares.dev/api](https://123milhas.arthurtavares.dev/api)
+[Online em: https://um-dois-tres-milhas.arthurtavares.dev/](https://um-dois-tres-milhas.arthurtavares.dev/)
 
 ## Requisitos
 - Docker
@@ -31,8 +31,8 @@ docker-compose exec 123milhas ./vendor/bin/phpunit
 ```
 
 ## Rotas disponíveis:
-`/api/v1/flights` - Retorna todos os dados, dos Voo e seus Agrupamentos.
+[`/api/v1/flights`](https://um-dois-tres-milhas.arthurtavares.dev/api/flights) - Retorna todos os dados, dos Voo e seus Agrupamentos.
 
-`/api/v1/groups` - Retorna apenas os dados dos agrupamentos dos voos.
+[`/api/v1/groups`](https://um-dois-tres-milhas.arthurtavares.dev/api/groups) - Retorna apenas os dados dos agrupamentos dos voos.
 
 
